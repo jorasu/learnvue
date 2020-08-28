@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color:red
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 将电影列表展示，并点击某一个电影列表时候，将此电影列表变成红色。 -->
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in movies"  @click="btnchange(index)"  :class="{active:index===currentindex}">{{item}}</li>
+        </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                currentindex:0,
+                movies:["海王","海贼王","火影忍者","复仇者联盟"]
+            },
+            methods: {
+                btnchange(index){
+                  this.currentindex=index;
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

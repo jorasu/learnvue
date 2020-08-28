@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- ​ 使用vue实现一个小计数器，点击+按钮，计数器+1，使用-按钮计数器-1。 -->
+
+    <div id="app">
+        <button @click="counter--">-</button>
+        计数器：<span>{{counter}}</span>
+        <button @click="counter++">+</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                counter:0
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

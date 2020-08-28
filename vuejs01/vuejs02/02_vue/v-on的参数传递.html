@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 省略参数  MouseEvent {isTrusted: true, screenX: 39, screenY: 124, clientX: 39, clientY: 21, …} -->
+        <button @click="btn1">按钮1</button>
+        <!-- undefined "btn2" -->
+        <button @click="btn2()">按钮2</button>
+        <!-- MouseEvent {isTrusted: true, screenX: 153, screenY: 123, clientX: 153, clientY: 20, …} "btn3" -->
+        <button @click="btn3($event,123)">按钮3</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                btn1(event){
+                    console.log(event,"btn1");
+                },
+                btn2(event){
+                    console.log(event,"btn2");
+                },
+                btn3(event,index){
+                    console.log(event,"btn3");
+                    console.log(index,"btn3");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+         <!--1. .stop的使用，btn的click事件不会传播，不会冒泡到上层，调用event.stopPropagation() -->
+        <div @click="divclick">divdivdiv---
+              <button @click.stop="btnclick">按钮1</button>
+        </div>
+         <!-- 2. .prevent 调用event.preeventDefault阻止默认行为  -->
+         <form action="www.baidu.com">
+             <button type="submit" @click.prevent="submitClick">提交</button>
+         </form>
+         <!--3. 监听键盘的事件  @click.键盘按键-->
+         <input type="text" @keyup.enter="keyup"> 
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                divclick(){
+                    console.log("divclick");
+                },
+                btnclick(){
+                    console.log("btnclick"); 
+                },
+                submitClick(){
+                    console.log("submitClick");
+                },
+                keyup(){
+                    console.log("keyup");   
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

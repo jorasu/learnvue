@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 动态导入图片 -->
+    <div id="app">
+        <img :src="imgUrl" alt="">
+        <a :href="hrefUrl">百度一下</a>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                hrefUrl:"http://www.baidu.com",
+                imgUrl:"https://cn.bing.com/th?id=OIP.NaSKiHPRcquisK2EehUI3gHaE8&pid=Api&rs=1"
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

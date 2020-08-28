@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>总价格：  {{totalPrice}}</h2>
+        <h2>总价格：  {{totalPrice1}}</h2>
+        <h2>总价格：  {{totalPrice2}}</h2>
+   
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                books:[
+                    {id:110,name:'代码大全',price:1990},
+                    {id:111,name:'代码大全1',price:1991},
+                    {id:112,name:'代码大全2',price:1992},
+                    {id:113,name:'代码大全3',price:1993}                          
+                ]
+            },
+            computed:{
+                //filter/map/reduce
+              totalPrice:function(){
+                  let result=0;
+                  for(let i=0;i<this.books.length;i++){
+                    result +=this.books[i].price;
+                  }
+                  return result;
+              },
+              totalPrice1:function(){
+                let result=0;
+                  for(let i in this.books){
+                    result+=    this.books[i].price
+                  }
+                  return result;
+              },
+              totalPrice2:function(){
+                let result=0;
+                for (let book of this.books) {
+                    result+=book.price;
+                }
+                return result;
+              }
+            },
+            methods: {}
+
+        });
+    </script>
+</body>
+
+</html>

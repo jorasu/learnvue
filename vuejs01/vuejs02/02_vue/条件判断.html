@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 在登录网站是经常可以选择使用账户名或者邮箱登录的切换按钮。要求点击按钮切换登录方式。 -->
+    <div id="app">
+        <span v-if="isUser">
+            <label for="username">用户账号</label>
+             <input type="text" id="username" placeholder="请输入用户名" key="username">
+            
+        </span>
+         <span v-else>
+            <label for="email">用户邮箱 </label>
+            <input type="text" id="email" placeholder="请输入邮件" key="email">
+           
+         </span>
+         <button @click="isUser=!isUser">切换类型</button>
+
+         <h2 v-show="isFlag">v-show只是操作元素的style属性display</h2>
+         <h2 v-if="isFlag">v-if是新增和删除dom元素</h2>
+
+         <button @click="isFlag=!isFlag">隐藏元素</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isUser:true,
+                isFlag:true
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
