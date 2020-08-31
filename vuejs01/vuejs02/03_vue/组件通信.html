@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn1 :cmessage="message" :cmovies="movies" @numchange="change"></cpn1> 
+        
+    </div>
+
+    <template id="mycpn1">
+        <div>
+            <h2>{{cmessage}}</h2>
+            <ul>
+                <li v-for="item in cmovies">{{item}}</li>
+            </ul>
+
+            <input type="text" @input="numchange">
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+
+        const cpn1 = {
+            template: "#mycpn1",
+            props: {
+                cmessage: {
+                    type: String,
+                    default: 'zzz',
+                    required: true             
+                },
+                cmovies: {
+                    type: Array,
+                    default() {
+                        return [1, 2, 3, 4]
+                    }
+                }
+            },
+            methods:{
+                numchange(event){
+                   this.$emit('numchange',event.target.value)
+                }
+            }
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello',
+                movies: ['复仇者联盟', '拳王', '蜡笔小新', '名侦探柯南']
+            },
+            components: {
+                cpn1
+            },
+            methods:{
+               change(value){
+                   return  this.message=value
+               } 
+            }
+        });
+    </script>
+</body>
+
+</html>

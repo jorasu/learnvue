@@ -8,34 +8,66 @@
 
 <body>
     <div id="app">
-         <input type="text" v-model.lazy="message">
-         {{message}}
-         <!-- 双向绑定原理 -->
-         <input type="text" :value="message" @input="changeValue">{{message}}
-         <!-- ​ radio单选框的name属性是互斥的，如果使用v-model，可以不使用name就可以互斥-->
-         <br>
-         <label for="male">男 </label>
-         <input type="radio" id="male" value="男" v-model="sex">
+        <h2>v-model修饰符</h2>
+        <h3>lazy,默认情况是实时更新数据，加上lazy，从输入框失去焦点，按下enter都会更新数据</h3>
+        <input type="text" v-model.lazy="message">
+        <div>{{message}}</div>
 
-         <label for="male" >女</label>
-         <input type="radio" id="female" value="女" v-model="sex">
-         <div>你选择的性别是：{{sex}}</div>
-         <!--  单选框-->
-         <h2>单选框</h2>
-         <label for="agree"></label>
-         <input type="checkbox" id="agree" v-model="isAgree">
-         同意协议
-         <button :disabled="!isAgree">下一步</button>
+        <h3>修饰符number,默认是string类型，使用number赋值为number类型</h3>
+        <input type="number" v-model="age">
+        <div>{{age}}--{{typeof age}}</div>
 
-         <!--多选框-->
-         <h2>多选框</h2>
-         <input type="checkbox" value="篮球" v-model="hobbies">篮球
-         <input type="checkbox" value="足球" v-model="hobbies">足球
-         <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
-         <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+        <input type="number" v-model.number="age2">
+        <div>{{age2}}--{{typeof age2}}</div>
          
+        <input type="text" v-model.trim="message">
+        <div>{{message}}</div>
+        <!-- 双向绑定原理 -->
+        <input type="text" :value="message" @input="changeValue">{{message}}
+        <!-- ​ radio单选框的name属性是互斥的，如果使用v-model，可以不使用name就可以互斥-->
+        <br>
+        <label for="male">男 </label>
+        <input type="radio" id="male" value="男" v-model="sex">
 
-         <h2>你的爱好是：{{hobbies}}</h2>
+        <label for="male">女</label>
+        <input type="radio" id="female" value="女" v-model="sex">
+        <div>你选择的性别是：{{sex}}</div>
+        <!--  单选框-->
+        <h2>单选框</h2>
+        <label for="agree"></label>
+        <input type="checkbox" id="agree" v-model="isAgree">
+        同意协议
+        <button :disabled="!isAgree">下一步</button>
+
+        <!--多选框-->
+        <h2>多选框</h2>
+        <input type="checkbox" value="篮球" v-model="hobbies">篮球
+        <input type="checkbox" value="足球" v-model="hobbies">足球
+        <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+        <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+
+
+        <h2>你的爱好是：{{hobbies}}</h2>
+
+        <label :for="item" v-for="item in orginHobbies">
+            <input type="checkbox" :value="item" :id="item" v-model="hobbies"> {{item}}
+        </label>
+
+        <!-- select下拉框单选 -->
+        <select name="fruit" v-model="fruit">
+            <option value="苹果">苹果</option>
+            <option value="香蕉">香蕉</option>
+            <option value="西瓜">西瓜</option>
+        </select>
+        <h2>你喜欢的水果是：{{fruit}}</h2>
+
+        <!-- select下拉框多选 -->
+        <select name="fruits" v-model="fruits" multiple>
+            <option value="苹果">苹果</option>
+            <option value="香蕉">香蕉</option>
+            <option value="西瓜">西瓜</option>
+        </select>
+        <h2>你喜欢的水果是：{{fruits}}</h2>
 
     </div>
 
@@ -44,14 +76,19 @@
         const app = new Vue({
             el: '#app',
             data: {
-                message:"hello",
-                sex:"男",
-                isAgree:false,
-                hobbies: []
+                message: "hello",
+                sex: "男",
+                age:18,
+                age2:22,
+                isAgree: false,
+                hobbies: [],
+                orginHobbies: ['篮球', '足球', '乒乓球', '羽毛球'],
+                fruit: '',
+                fruits: []
             },
             methods: {
-                changeValue(event){
-                   this.message=event.target.value;
+                changeValue(event) {
+                    this.message = event.target.value;
                 }
             }
         });

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+         <cpn></cpn>
+
+         <h2>data不使用函数</h2>
+         <cpn1></cpn1>
+         <cpn1></cpn1>
+         <h2>data使用函数</h2>
+         <cpn2></cpn2>
+         <cpn2></cpn2>
+    </div>
+    
+
+    <template id="mycpn">
+        <div>
+            <h2>模板的分离写法全局注册</h2>
+        </div>
+    </template>
+
+    <template id="mycpn1">
+        <div>
+            <h2>模板的分离写法局部注册</h2>
+            <button @click="count--">-</button>
+            当前计数：{{count}}
+            <button @click="count++">+</button>
+        </div>
+    </template>
+
+    <template id="mycpn2">
+        <div>
+            <h2>模板的分离写法局部注册</h2>
+            <button @click="count--">-</button>
+            当前计数：{{count}}
+            <button @click="count++">+</button>
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+
+        Vue.component('cpn',{template:'#mycpn'})
+        const obj={
+            count:0
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components:{
+                'cpn1':{
+                    template:'#mycpn1',
+                    data(){
+                        return obj;
+                    }
+                    },
+                'cpn2':{
+                    template:'#mycpn2',
+                    data(){
+                        return {
+                            count:0
+                        }
+                    }
+                    }
+            }
+        });
+    </script>
+</body>
+
+</html>
